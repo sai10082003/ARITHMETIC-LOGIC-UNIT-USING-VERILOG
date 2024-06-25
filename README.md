@@ -1,13 +1,2 @@
 # FULLY-AUTOMATED-TRAFFIC-LIGHT-CONTROLLER-SYSTEM-FOR-A-FOUR-WAY-INTERSECTION-USING-VERILOG
 This repository contains a Verilog implementation of a traffic light controller for a four-way intersection, including pedestrian crossings. The code is optimized for FPGA deployment and includes a detailed state table, block diagram, and comprehensive test bench.
-# STATE TABLE 
-STATE	ROAD 1	ROAD 2	ROAD 3	ROAD 4	PEDESTRIANS
-0	GREEN	RED	RED	RED	NO CROSSING
-1	YELLOW	RED	RED	RED	NO CROSSING
-2	RED	GREEN	RED	RED	NO CROSSING
-3	RED	YELLOW	RED	RED	NO CROSSING
-4	RED	RED	GREEN	RED	NO CROSSING
-5	RED	RED	YELLOW	RED	NO CROSSING
-6	RED	RED	RED	GREEN	NO CROSSING
-7	RED	RED	RED	YELLOW	NO CROSSING
-8	RED	RED	RED	RED	CROSSING
