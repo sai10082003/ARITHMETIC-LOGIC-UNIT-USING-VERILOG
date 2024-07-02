@@ -1,0 +1,80 @@
+`timescale 1ns / 1ps
+
+module ALU (
+    input [3:0] A,        
+    input [3:0] B,        
+    input [3:0] ALU_Sel,   
+    output reg [7:0] ALU_Out, 
+    output reg Overflow    
+);
+
+
+parameter ADD  = 4'b0000;
+parameter SUB  = 4'b1010; 
+parameter MUL  = 4'b0001;
+parameter DIV  = 4'b0010;
+parameter AND  = 4'b0011;
+parameter OR   = 4'b0100;
+parameter NOT  = 4'b0101;
+parameter NAND = 4'b0110;
+parameter NOR  = 4'b0111;
+parameter LSHIFT = 4'b1000;
+parameter RSHIFT = 4'b1001;
+
+always @(*) begin
+    Overflow = 0; 
+    case(ALU_Sel)
+        ADD: begin
+            {Overflow, ALU_Out} = A + B; 
+        end
+        
+        SUB: begin
+            {Overflow, ALU_Out} = A - B; 
+        end
+        
+        MUL: begin
+            ALU_Out = A * B; 
+        end
+        
+        DIV: begin
+            if (B != 0)
+                ALU_Out = A / B; 
+            else
+                ALU_Out = 8'b11111111; 
+        end
+        
+        AND: begin
+            ALU_Out = A & B; 
+        end
+        
+        OR: begin
+            ALU_Out = A | B; 
+        end
+        
+        NOT: begin
+            ALU_Out = ~A; 
+        end
+        
+        NAND: begin
+            ALU_Out = ~(A & B); 
+        end
+        
+        NOR: begin
+            ALU_Out = ~(A | B); 
+        end
+        
+        LSHIFT: begin
+            ALU_Out = A << 1; 
+        end
+        
+        RSHIFT: begin
+            ALU_Out = A >> 1; 
+        end
+        
+        default: begin
+            ALU_Out = 8'b00000000; 
+        end
+    endcase
+end
+
+endmodule
